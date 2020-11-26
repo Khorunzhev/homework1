@@ -1,0 +1,7 @@
+Question,QuestionType,NumberOfAnswers,Answer,isCorrect
+How many grams are in 1 kilogram ?,FREE_FORM,,1000,
+What is the number of needles on the tree ?,MULTIPLE_CHOICE,4,100,false
+,,,2000,false
+,,,3000,false
+,,,10000,true
+Name the capital of Russia ?,FREE_FORM,,Moscow,
