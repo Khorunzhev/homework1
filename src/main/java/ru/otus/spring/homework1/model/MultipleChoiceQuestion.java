@@ -1,4 +1,7 @@
 package ru.otus.spring.homework1.model;
 
-public class MultipleChoiceQuestion {
+import lombok.Data;
+
+@Data
+public class MultipleChoiceQuestion extends Question {
 }

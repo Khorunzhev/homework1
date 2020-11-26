@@ -1,4 +1,8 @@
 package ru.otus.spring.homework1.model;
 
-public class FreeFormQuestion {
+import lombok.Data;
+
+@Data
+public class FreeFormQuestion extends Question {
+
 }
