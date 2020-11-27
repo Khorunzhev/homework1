@@ -14,6 +14,8 @@ import ru.otus.spring.homework1.model.enums.SurveyCSVHeaders;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 @Log
 public class CsvToSurveyParserService {
@@ -33,12 +35,17 @@ public class CsvToSurveyParserService {
             Question question;
             switch (QuestionType.valueOf(record.get(SurveyCSVHeaders.QuestionType).toUpperCase())) {
                 case MULTIPLE_CHOICE:
-                    int numberOfAnswers = record.get(SurveyCSVHeaders.NumberOfAnswers);
+                    List<String> answers = new ArrayList<>();
+                    int numberOfAnswers = Integer.parseInt(record.get(SurveyCSVHeaders.NumberOfAnswers));
+                    while (numberOfAnswers>0) {
+                        answers.add(record.get(4));
+                        numberOfAnswers--;
+                    }
                     question = MultipleChoiceQuestion
                             .builder()
                             .questionText(record.get(SurveyCSVHeaders.Question))
                             .questionDescription(QuestionType.MULTIPLE_CHOICE.getDescription())
-                            .answers()
+                            .answers(answers)
                             .build();
                     break;
         }
