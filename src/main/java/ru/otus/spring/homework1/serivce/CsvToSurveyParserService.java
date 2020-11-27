@@ -1,15 +1,21 @@
 package ru.otus.spring.homework1.serivce;
 
 import lombok.SneakyThrows;
+import lombok.extern.java.Log;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import ru.otus.spring.homework1.model.FreeFormQuestion;
+import ru.otus.spring.homework1.model.MultipleChoiceQuestion;
+import ru.otus.spring.homework1.model.Question;
 import ru.otus.spring.homework1.model.Survey;
+import ru.otus.spring.homework1.model.enums.QuestionType;
 import ru.otus.spring.homework1.model.enums.SurveyCSVHeaders;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+@Log
 public class CsvToSurveyParserService {
 
     private CsvReaderService csvReaderService;
@@ -24,7 +30,17 @@ public class CsvToSurveyParserService {
                 .parse(Files.newBufferedReader(csvFile));
 
         for (CSVRecord record : records) {
-            String
+            Question question;
+            switch (QuestionType.valueOf(record.get(SurveyCSVHeaders.QuestionType).toUpperCase())) {
+                case MULTIPLE_CHOICE:
+                    int numberOfAnswers = record.get(SurveyCSVHeaders.NumberOfAnswers);
+                    question = MultipleChoiceQuestion
+                            .builder()
+                            .questionText(record.get(SurveyCSVHeaders.Question))
+                            .questionDescription(QuestionType.MULTIPLE_CHOICE.getDescription())
+                            .answers()
+                            .build();
+                    break;
         }
     }
 

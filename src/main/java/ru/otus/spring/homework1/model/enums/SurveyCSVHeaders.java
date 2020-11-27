@@ -4,6 +4,9 @@ public enum SurveyCSVHeaders {
     Question,
     QuestionType,
     NumberOfAnswers,
-    Answer,
-    isCorrect;
+    Answer1,
+    Answer2,
+    Answer3,
+    Answer4,
+    CorrectAnswer;
 }

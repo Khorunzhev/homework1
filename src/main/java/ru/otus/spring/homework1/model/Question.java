@@ -1,7 +1,17 @@
 package ru.otus.spring.homework1.model;
 
-public abstract class Question {
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
+import ru.otus.spring.homework1.model.enums.QuestionType;
 
-    private String answer;
+@Getter
+@SuperBuilder
+public class Question {
+
+    private final String questionText;
+    private final String questionDescription;
+    private final QuestionType questionType;
 
 }
