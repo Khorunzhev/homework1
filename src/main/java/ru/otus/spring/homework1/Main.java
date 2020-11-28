@@ -1,7 +1,9 @@
 package ru.otus.spring.homework1;
 
+import lombok.extern.java.Log;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+@Log
 public class Main {
 
     public static void main(String[] args) {

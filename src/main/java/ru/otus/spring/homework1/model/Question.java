@@ -10,6 +10,7 @@ import ru.otus.spring.homework1.model.enums.QuestionType;
 @SuperBuilder
 public class Question {
 
+    private final String correctAnswer;
     private final String questionText;
     private final String questionDescription;
 

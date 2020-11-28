@@ -1,4 +1,4 @@
-package ru.otus.spring.homework1.serivce;
+package ru.otus.spring.homework1.dao.csv.utils;
 
 import lombok.SneakyThrows;
 import lombok.extern.java.Log;
@@ -7,27 +7,25 @@ import org.apache.commons.csv.CSVRecord;
 import ru.otus.spring.homework1.model.FreeFormQuestion;
 import ru.otus.spring.homework1.model.MultipleChoiceQuestion;
 import ru.otus.spring.homework1.model.Question;
-import ru.otus.spring.homework1.model.Survey;
 import ru.otus.spring.homework1.model.enums.QuestionType;
 import ru.otus.spring.homework1.model.enums.SurveyCSVHeaders;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 @Log
-public class CsvToSurveyParserService {
+public class CsvToQuestionListParser {
 
-    private CsvReaderService csvReaderService;
+    private CsvReader csvReader;
 
     public static final int ANSWER_COLUMN_BEGIN_FROM_POSITION = 4;
 
     @SneakyThrows
-    public Survey parseCsvToSurvey(String fileName) {
+    public List<Question> parseCsvToQuestionList() {
 
-        Path csvFile = csvReaderService.getCsvPathFromResource(fileName);
+        Path csvFile = csvReader.getCsvPathFromResource();
 
         Iterable<CSVRecord> records = CSVFormat.DEFAULT
                 .withHeader(SurveyCSVHeaders.class)
@@ -35,10 +33,11 @@ public class CsvToSurveyParserService {
                 .parse(Files.newBufferedReader(csvFile));
 
 
-        List<Question> questionList;
+        List<Question> questionList = new ArrayList<>();
         for (CSVRecord record : records) {
             Question question;
-            switch (QuestionType.valueOf(record.get(SurveyCSVHeaders.QuestionType).toUpperCase())) {
+            String questionType = record.get(SurveyCSVHeaders.QuestionType).toUpperCase();
+            switch (QuestionType.valueOf(questionType)) {
                 case MULTIPLE_CHOICE:
                     List<String> answers = new ArrayList<>();
                     int numberOfAnswers = Integer.parseInt(record.get(SurveyCSVHeaders.NumberOfAnswers));
@@ -66,10 +65,13 @@ public class CsvToSurveyParserService {
 
                     questionList.add(question);
                     break;
+                default:
+                    log.info(String.format("Не распознан формат вопроса. Приложение не поддерживает формат %s", questionType));
+                    break;
             }
         }
 
-        return Survey.builder().
+        return questionList;
 
     }
 }
