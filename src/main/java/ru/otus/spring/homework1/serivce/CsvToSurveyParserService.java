@@ -22,8 +22,11 @@ public class CsvToSurveyParserService {
 
     private CsvReaderService csvReaderService;
 
+    public static final int ANSWER_COLUMN_BEGIN_FROM_POSITION = 4;
+
     @SneakyThrows
     public Survey parseCsvToSurvey(String fileName) {
+
         Path csvFile = csvReaderService.getCsvPathFromResource(fileName);
 
         Iterable<CSVRecord> records = CSVFormat.DEFAULT
@@ -31,15 +34,19 @@ public class CsvToSurveyParserService {
                 .withFirstRecordAsHeader()
                 .parse(Files.newBufferedReader(csvFile));
 
+
+        List<Question> questionList;
         for (CSVRecord record : records) {
             Question question;
             switch (QuestionType.valueOf(record.get(SurveyCSVHeaders.QuestionType).toUpperCase())) {
                 case MULTIPLE_CHOICE:
                     List<String> answers = new ArrayList<>();
                     int numberOfAnswers = Integer.parseInt(record.get(SurveyCSVHeaders.NumberOfAnswers));
-                    while (numberOfAnswers>0) {
-                        answers.add(record.get(4));
+                    int asnwerColumntStartPosition = ANSWER_COLUMN_BEGIN_FROM_POSITION;
+                    while (numberOfAnswers > 0) {
+                        answers.add(record.get(asnwerColumntStartPosition));
                         numberOfAnswers--;
+                        asnwerColumntStartPosition++;
                     }
                     question = MultipleChoiceQuestion
                             .builder()
@@ -47,8 +54,22 @@ public class CsvToSurveyParserService {
                             .questionDescription(QuestionType.MULTIPLE_CHOICE.getDescription())
                             .answers(answers)
                             .build();
-                    break;
-        }
-    }
 
+                    questionList.add(question);
+                    break;
+                case FREE_FORM:
+                    question = FreeFormQuestion
+                            .builder()
+                            .questionText(record.get(SurveyCSVHeaders.Question))
+                            .questionDescription(QuestionType.FREE_FORM.getDescription())
+                            .build();
+
+                    questionList.add(question);
+                    break;
+            }
+        }
+
+        return Survey.builder().
+
+    }
 }

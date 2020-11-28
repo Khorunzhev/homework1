@@ -12,6 +12,5 @@ public class Question {
 
     private final String questionText;
     private final String questionDescription;
-    private final QuestionType questionType;
 
 }

@@ -9,4 +9,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class FreeFormQuestion extends Question {
 
+    private final String answer;
+
 }
