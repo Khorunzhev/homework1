@@ -1,8 +1,8 @@
 package ru.otus.spring.homework1.model.enums;
 
 public enum QuestionType {
-    FREE_FORM("Напечатайте ответ в свободной форме"),
-    MULTIPLE_CHOICE("Выберите правильный ответ из предложенных, для этого напечатайте его в поле ввода");
+    FREE_FORM("Print your answer in free-form"),
+    MULTIPLE_CHOICE("Choose the correct answer from the proposed ones, than print it in the input field");
 
     private String description;
 

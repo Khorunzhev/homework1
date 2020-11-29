@@ -25,7 +25,7 @@ public class QuestionConsolePrintServiceImpl implements QuestionPrintService {
         List<Question> questionList = questionDao.findAll();
         for(Question question: questionList) {
             String questionString = questionFormatterService.formatQuestionAnswer(question);
-            log.info(questionString);
+            System.out.println(questionString);
         }
     }
 }

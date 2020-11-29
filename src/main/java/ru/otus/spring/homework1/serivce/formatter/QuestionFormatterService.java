@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 public class QuestionFormatterService {
 
     private static final String MULTIPLE_ANSWERS_QUESTION_FORMATIVE_STRING =
-            "Вопрос: %s \n Тип вопроса: %s \n Возможные ответы: %s \n Ваш ответ: ";
+            "Question: %s \nType of question: %s \nPossible answers: %s \nYour response: ";
     private static final String FREE_FORM_QUESTION_FORMATIVE_STRING =
-            "Вопрос: %s \n Тип вопроса: %s \n Ваш ответ: ";
+            "Question: %s \nType of question: %s \nYour response: ";
 
     public String formatQuestionAnswer(Question question) {
         if (question instanceof MultipleChoiceQuestion) {
@@ -31,7 +31,7 @@ public class QuestionFormatterService {
 
     private String formatMultipleAnswers(List<String> answers) {
         return answers.stream()
-                .map(string -> String.format("%s,", string))
+                .map(string -> String.format("= %s =", string))
                 .collect(Collectors.joining());
     }
 }
