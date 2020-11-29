@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="csvReader" class="ru.otus.spring.homework1.dao.csv.utils.CsvReader">
+        <constructor-arg name="fileName" value="questions.csv"/>
+    </bean>
+
+    <bean id="csvToQuestionListParser" class="ru.otus.spring.homework1.dao.csv.utils.CsvToQuestionListParser">
+        <constructor-arg name="csvReader" ref="csvReader"/>
+    </bean>
+
+    <bean id="questionDao" class="ru.otus.spring.homework1.dao.csv.QuestionDaoCSV">
+        <constructor-arg name="csvToQuestionListParser" ref="csvToQuestionListParser"/>
+    </bean>
+
+    <bean id="questionFormatterService" class="ru.otus.spring.homework1.serivce.formatter.QuestionFormatterService"/>
+
+    <bean id="personService" class="ru.otus.spring.homework1.serivce.QuestionConsolePrintServiceImpl">
+        <constructor-arg name="questionDao" ref="questionDao"/>
+        <constructor-arg name="questionFormatterService" ref="questionFormatterService"/>
+    </bean>
+
+
+</beans>
