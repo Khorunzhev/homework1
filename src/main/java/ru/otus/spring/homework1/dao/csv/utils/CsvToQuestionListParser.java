@@ -18,9 +18,13 @@ import java.util.List;
 @Log
 public class CsvToQuestionListParser {
 
+    public static final int ANSWER_COLUMN_BEGIN_FROM_POSITION = 4;
+
     private CsvReader csvReader;
 
-    public static final int ANSWER_COLUMN_BEGIN_FROM_POSITION = 4;
+    public CsvToQuestionListParser(CsvReader csvReader) {
+        this.csvReader = csvReader;
+    }
 
     @SneakyThrows
     public List<Question> parseCsvToQuestionList() {

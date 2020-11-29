@@ -18,7 +18,7 @@ public class CsvReader {
 
     @SneakyThrows
     public Path getCsvPathFromResource() {
-        URL csvFile = getClass().getResource(fileName);
+        URL csvFile = getClass().getClassLoader().getResource(fileName);
         return Paths.get(csvFile.toURI());
     }
 
