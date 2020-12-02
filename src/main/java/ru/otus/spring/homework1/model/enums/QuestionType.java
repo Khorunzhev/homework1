@@ -4,7 +4,7 @@ public enum QuestionType {
     FREE_FORM("Print your answer in free-form"),
     MULTIPLE_CHOICE("Choose the correct answer from the proposed ones, than print it in the input field");
 
-    private String description;
+    private final String description;
 
     QuestionType(String description) {
         this.description = description;

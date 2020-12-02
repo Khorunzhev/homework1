@@ -11,8 +11,8 @@ import java.util.function.Supplier;
 @Log
 public class QuestionConsolePrintServiceImpl implements QuestionPrintService {
 
-    QuestionFormatterService questionFormatterService;
-    QuestionDao questionDao;
+    private final QuestionFormatterService questionFormatterService;
+    private final QuestionDao questionDao;
 
     public QuestionConsolePrintServiceImpl(QuestionDao questionDao,
                                            QuestionFormatterService questionFormatterService) {

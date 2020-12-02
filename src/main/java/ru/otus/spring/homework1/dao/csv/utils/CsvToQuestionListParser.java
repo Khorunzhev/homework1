@@ -20,7 +20,7 @@ public class CsvToQuestionListParser {
 
     public static final int ANSWER_COLUMN_BEGIN_FROM_POSITION = 4;
 
-    private CsvReader csvReader;
+    private final CsvReader csvReader;
 
     public CsvToQuestionListParser(CsvReader csvReader) {
         this.csvReader = csvReader;
@@ -36,46 +36,51 @@ public class CsvToQuestionListParser {
                 .withFirstRecordAsHeader()
                 .parse(Files.newBufferedReader(csvFile));
 
+        return getQuestionList(records);
 
+    }
+
+    private List<Question> getQuestionList(Iterable<CSVRecord> records) {
         List<Question> questionList = new ArrayList<>();
         for (CSVRecord record : records) {
-            Question question;
             String questionType = record.get(SurveyCSVHeaders.QuestionType).toUpperCase();
             switch (QuestionType.valueOf(questionType)) {
                 case MULTIPLE_CHOICE:
-                    List<String> answers = new ArrayList<>();
-                    int numberOfAnswers = Integer.parseInt(record.get(SurveyCSVHeaders.NumberOfAnswers));
-                    int asnwerColumntStartPosition = ANSWER_COLUMN_BEGIN_FROM_POSITION;
-                    while (numberOfAnswers > 0) {
-                        answers.add(record.get(asnwerColumntStartPosition));
-                        numberOfAnswers--;
-                        asnwerColumntStartPosition++;
-                    }
-                    question = MultipleChoiceQuestion
-                            .builder()
-                            .questionText(record.get(SurveyCSVHeaders.Question))
-                            .questionDescription(QuestionType.MULTIPLE_CHOICE.getDescription())
-                            .answers(answers)
-                            .build();
-
-                    questionList.add(question);
+                    questionList.add(getMultipleQuestion(record));
                     break;
                 case FREE_FORM:
-                    question = FreeFormQuestion
-                            .builder()
-                            .questionText(record.get(SurveyCSVHeaders.Question))
-                            .questionDescription(QuestionType.FREE_FORM.getDescription())
-                            .build();
-
-                    questionList.add(question);
+                    questionList.add(getFreeFormQuestion(record));
                     break;
                 default:
                     log.info(String.format("Не распознан формат вопроса. Приложение не поддерживает формат %s", questionType));
                     break;
             }
         }
-
         return questionList;
+    }
 
+    private Question getMultipleQuestion(CSVRecord record) {
+        List<String> answers = new ArrayList<>();
+        int numberOfAnswers = Integer.parseInt(record.get(SurveyCSVHeaders.NumberOfAnswers));
+        int asnwerColumntStartPosition = ANSWER_COLUMN_BEGIN_FROM_POSITION;
+        while (numberOfAnswers > 0) {
+            answers.add(record.get(asnwerColumntStartPosition));
+            numberOfAnswers--;
+            asnwerColumntStartPosition++;
+        }
+        return MultipleChoiceQuestion
+                .builder()
+                .questionText(record.get(SurveyCSVHeaders.Question))
+                .questionDescription(QuestionType.MULTIPLE_CHOICE.getDescription())
+                .answers(answers)
+                .build();
+    }
+
+    private Question getFreeFormQuestion(CSVRecord record) {
+        return FreeFormQuestion
+                .builder()
+                .questionText(record.get(SurveyCSVHeaders.Question))
+                .questionDescription(QuestionType.FREE_FORM.getDescription())
+                .build();
     }
 }
