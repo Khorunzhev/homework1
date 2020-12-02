@@ -1,4 +1,4 @@
-package ru.otus.spring.homework1.serivce.formatter;
+package ru.otus.spring.homework1.serivce.questions.formatter;
 
 import org.springframework.stereotype.Service;
 import ru.otus.spring.homework1.model.FreeFormQuestion;

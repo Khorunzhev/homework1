@@ -1,5 +1,5 @@
 Question,QuestionType,NumberOfAnswers,Answer1,Answer2,Answer3,Answer4,CorrectAnswer
-How many grams are in 1 kilogram ?,FREE_FORM,,1000,,,,
+How many grams are in 1 kilogram ?,FREE_FORM,,"",,,,1000
 What is the number of needles on the tree ?,MULTIPLE_CHOICE,4,100,2000,3000,10000,10000
 Who is the president of the USA ?,MULTIPLE_CHOICE,4,Trump,Obama,Byden,Ivan,Trump
-Name the capital of Russia ?,FREE_FORM,,Moscow,,,,
+Name the capital of Russia ?,FREE_FORM,,"",,,,Moscow
