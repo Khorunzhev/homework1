@@ -1,9 +1,11 @@
 package ru.otus.spring.homework1.dao.csv.utils;
 
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.stereotype.Service;
 import ru.otus.spring.homework1.model.FreeFormQuestion;
 import ru.otus.spring.homework1.model.MultipleChoiceQuestion;
 import ru.otus.spring.homework1.model.Question;
@@ -16,15 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log
-public class CsvToQuestionListParser {
+@Service
+@AllArgsConstructor
+public class CsvToQuestionListParserService {
 
     public static final int ANSWER_COLUMN_BEGIN_FROM_POSITION = 4;
 
     private final CsvReader csvReader;
-
-    public CsvToQuestionListParser(CsvReader csvReader) {
-        this.csvReader = csvReader;
-    }
 
     @SneakyThrows
     public List<Question> parseCsvToQuestionList() {

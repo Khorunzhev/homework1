@@ -8,11 +8,11 @@
         <constructor-arg name="fileName" value="questions.csv"/>
     </bean>
 
-    <bean id="csvToQuestionListParser" class="ru.otus.spring.homework1.dao.csv.utils.CsvToQuestionListParser">
+    <bean id="csvToQuestionListParser" class="ru.otus.spring.homework1.dao.csv.utils.CsvToQuestionListParserService">
         <constructor-arg name="csvReader" ref="csvReader"/>
     </bean>
 
-    <bean id="questionDao" class="ru.otus.spring.homework1.dao.csv.QuestionDaoCSV">
+    <bean id="questionDao" class="ru.otus.spring.homework1.dao.csv.QuestionDaoCSVImpl">
         <constructor-arg name="csvToQuestionListParser" ref="csvToQuestionListParser"/>
     </bean>
 

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 @Log
+@Service
 public class QuestionConsolePrintServiceImpl implements QuestionPrintService {
 
     private final QuestionFormatterService questionFormatterService;
