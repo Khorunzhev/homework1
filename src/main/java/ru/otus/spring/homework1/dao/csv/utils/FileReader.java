@@ -2,22 +2,17 @@ package ru.otus.spring.homework1.dao.csv.utils;
 
 
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.File;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class CsvReader {
-
-    private final String fileName;
-
-    public CsvReader(String fileName) {
-        this.fileName = fileName;
-    }
+public class FileReader {
 
     @SneakyThrows
-    public Path getCsvPathFromResource() {
+    public Path getPathFromResource(String fileName) {
         URL csvFile = getClass().getClassLoader().getResource(fileName);
         return Paths.get(csvFile.toURI());
     }

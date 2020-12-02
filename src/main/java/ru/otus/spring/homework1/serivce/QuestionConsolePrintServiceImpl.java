@@ -1,25 +1,21 @@
 package ru.otus.spring.homework1.serivce;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.stereotype.Service;
 import ru.otus.spring.homework1.dao.QuestionDao;
 import ru.otus.spring.homework1.model.Question;
 import ru.otus.spring.homework1.serivce.formatter.QuestionFormatterService;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 @Log
 @Service
+@AllArgsConstructor
 public class QuestionConsolePrintServiceImpl implements QuestionPrintService {
 
     private final QuestionFormatterService questionFormatterService;
     private final QuestionDao questionDao;
-
-    public QuestionConsolePrintServiceImpl(QuestionDao questionDao,
-                                           QuestionFormatterService questionFormatterService) {
-        this.questionDao = questionDao;
-        this.questionFormatterService = questionFormatterService;
-    }
 
     @Override
     public void printAllQuestions() {

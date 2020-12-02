@@ -24,12 +24,12 @@ public class CsvToQuestionListParserService {
 
     public static final int ANSWER_COLUMN_BEGIN_FROM_POSITION = 4;
 
-    private final CsvReader csvReader;
+    private final FileReader fileReader;
 
     @SneakyThrows
-    public List<Question> parseCsvToQuestionList() {
+    public List<Question> parseCsvToQuestionList(String fileName) {
 
-        Path csvFile = csvReader.getCsvPathFromResource();
+        Path csvFile = fileReader.getPathFromResource(fileName);
 
         Iterable<CSVRecord> records = CSVFormat.DEFAULT
                 .withHeader(SurveyCSVHeaders.class)
