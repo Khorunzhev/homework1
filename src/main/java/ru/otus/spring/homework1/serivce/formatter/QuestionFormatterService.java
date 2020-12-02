@@ -1,5 +1,6 @@
 package ru.otus.spring.homework1.serivce.formatter;
 
+import org.springframework.stereotype.Service;
 import ru.otus.spring.homework1.model.FreeFormQuestion;
 import ru.otus.spring.homework1.model.MultipleChoiceQuestion;
 import ru.otus.spring.homework1.model.Question;
@@ -7,6 +8,7 @@ import ru.otus.spring.homework1.model.Question;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class QuestionFormatterService {
 
     private static final String MULTIPLE_ANSWERS_QUESTION_FORMATIVE_STRING =
