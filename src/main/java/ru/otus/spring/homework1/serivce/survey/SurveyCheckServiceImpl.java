@@ -38,7 +38,8 @@ public class SurveyCheckServiceImpl implements SurveyCheckService {
 
         for (Question question : questionList) {
             String actualAnswer = askQuestionService.askQuestion(question);
-            if (answerCheckService.checkAnswer(actualAnswer, question.getCorrectAnswer())) numberOfRightAnswers++;
+            if (answerCheckService.checkAnswer(actualAnswer, question.getCorrectAnswer()))
+                numberOfRightAnswers++;
         }
 
         if (numberOfRightAnswers >= expectedNumberOfRightAnswers) {

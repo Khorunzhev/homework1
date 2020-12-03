@@ -72,6 +72,7 @@ public class CsvToQuestionListParserService {
                 .builder()
                 .questionText(record.get(SurveyCSVHeaders.Question))
                 .questionDescription(QuestionType.MULTIPLE_CHOICE.getDescription())
+                .correctAnswer(record.get(SurveyCSVHeaders.CorrectAnswer))
                 .answers(answers)
                 .build();
     }
@@ -81,6 +82,7 @@ public class CsvToQuestionListParserService {
                 .builder()
                 .questionText(record.get(SurveyCSVHeaders.Question))
                 .questionDescription(QuestionType.FREE_FORM.getDescription())
+                .correctAnswer(record.get(SurveyCSVHeaders.CorrectAnswer))
                 .build();
     }
 }
