@@ -23,7 +23,7 @@ public class AskQuestionConsoleServiceImpl implements AskQuestionService {
     public void askAllQuestions(List<Question> questionList) {
         for(Question question: questionList) {
             String questionString = questionFormatterService.formatQuestionAnswer(question);
-            System.out.println(questionString);
+            interactWithUserService.writeTo(questionString);
         }
     }
 
