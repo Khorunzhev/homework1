@@ -8,6 +8,7 @@ import ru.otus.spring.homework1.dao.QuestionDao;
 import ru.otus.spring.homework1.model.Question;
 import ru.otus.spring.homework1.serivce.answers.AnswerCheckService;
 import ru.otus.spring.homework1.serivce.questions.AskQuestionService;
+import ru.otus.spring.homework1.serivce.utils.InteractWithUserService;
 
 import java.util.List;
 
@@ -17,18 +18,21 @@ public class SurveyCheckServiceImpl implements SurveyCheckService {
     private final Integer expectedNumberOfRightAnswers;
     private final AskQuestionService askQuestionService;
     private final AnswerCheckService answerCheckService;
+    private final InteractWithUserService interactWithUserService;
     private final QuestionDao questionDao;
 
     @Autowired
     public SurveyCheckServiceImpl(@Value("${survey.answers.positive}") Integer expectedNumberOfRightAnswers,
                                   AskQuestionService askQuestionService,
                                   AnswerCheckService answerCheckService,
-                                  QuestionDao questionDao) {
+                                  QuestionDao questionDao,
+                                  InteractWithUserService interactWithUserService) {
 
         this.answerCheckService = answerCheckService;
         this.askQuestionService = askQuestionService;
         this.expectedNumberOfRightAnswers = expectedNumberOfRightAnswers;
         this.questionDao = questionDao;
+        this.interactWithUserService = interactWithUserService;
     }
 
     @Override
@@ -43,9 +47,9 @@ public class SurveyCheckServiceImpl implements SurveyCheckService {
         }
 
         if (numberOfRightAnswers >= expectedNumberOfRightAnswers) {
-            System.out.println("Тест пройден");
+            interactWithUserService.writeTo("Тест пройден");
         } else {
-            System.out.println("Тест провален");
+            interactWithUserService.writeTo("Тест провален");
         }
 
     }

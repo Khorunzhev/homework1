@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface AskQuestionService {
 
-    void printAllQuestions(List<Question> questionList);
+    void askAllQuestions(List<Question> questionList);
     String askQuestion(Question question);
 }

@@ -1,10 +1,9 @@
 package ru.otus.spring.homework1;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import ru.otus.spring.homework1.serivce.survey.SurveyCheckService;
+import ru.otus.spring.homework1.serivce.utils.InteractWithUserService;
+import ru.otus.spring.homework1.serivce.utils.InteractWithUserServiceImpl;
 
 @ComponentScan
 @Configuration
