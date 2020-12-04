@@ -13,6 +13,6 @@ public class Main {
                 new AnnotationConfigApplicationContext(Main.class);
         SurveyCheckService service = context.getBean(SurveyCheckService.class);
 
-        service.runSurvey();
+        service.getSurveyResult();
     }
 }
