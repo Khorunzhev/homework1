@@ -9,5 +9,6 @@ public class SurveyProps {
 
     private int numberOfQuestions;
     private int numberOfRightAnswers;
+    private String fileQuestions;
 
 }

@@ -25,14 +25,17 @@ public class SurveyAutoConfiguration {
     public SurveyConfig surveyConfig() {
         int defaultNumberOfQuestions = 5;
         int defaultNumberOfRightAnswers = 1;
+        String defaultFileOfQuestions = "questions.csv";
         int numberOfQuestions = surveyProps.getNumberOfQuestions() == 0 ? defaultNumberOfQuestions : surveyProps.getNumberOfQuestions();
         int numberOfRightAnswers = surveyProps.getNumberOfRightAnswers() == 0 ? defaultNumberOfRightAnswers : surveyProps.getNumberOfRightAnswers();
+        String fileQuestions = surveyProps.getFileQuestions() == null ? defaultFileOfQuestions : surveyProps.getFileQuestions();
         log.info(String.format(
                 "AutoConfig. creating SurveyConfig " +
-                "with numberOfQuestions = %d, numberOfRightAnswers = %d",
+                "with numberOfQuestions = %d, numberOfRightAnswers = %d and fileOfQuestion = %s",
                 numberOfQuestions,
-                numberOfRightAnswers));
-        return new SurveyConfig(numberOfQuestions, numberOfRightAnswers);
+                numberOfRightAnswers,
+                defaultFileOfQuestions));
+        return new SurveyConfig(numberOfQuestions, numberOfRightAnswers, fileQuestions);
     }
 
 }

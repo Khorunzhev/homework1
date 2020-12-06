@@ -4,3 +4,8 @@ application:
 
 messager:
   message: "Hello from Messager test"
+
+survey:
+  questions:
+    source:
+      filename: "questions.csv"

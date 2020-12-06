@@ -9,4 +9,5 @@ import lombok.Getter;
 public class SurveyConfig {
     int numberOfQuestions;
     int numberOfRightAnswers;
+    String fileName;
 }
