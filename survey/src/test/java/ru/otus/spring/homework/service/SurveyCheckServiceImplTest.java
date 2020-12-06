@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ru.otus.spring.homework.configuration.SurveyConfig;
 import ru.otus.spring.homework.dao.QuestionDao;
 import ru.otus.spring.homework.model.MultipleChoiceQuestion;
 import ru.otus.spring.homework.model.Question;
@@ -36,15 +37,15 @@ public class SurveyCheckServiceImplTest {
     private InteractWithUserService interactWithUserService;
     @Mock
     private QuestionDao questionDao;
+    @Mock
+    private SurveyConfig surveyConfig;
 
-    Integer numberOfRightAnswers;
 
 
     @BeforeEach
     public void initMocks() {
-        numberOfRightAnswers = 1;
         surveyCheckServiceImpl = new SurveyCheckServiceImpl(
-                numberOfRightAnswers,
+                surveyConfig,
                 askQuestionService,
                 answerCheckService,
                 questionDao,

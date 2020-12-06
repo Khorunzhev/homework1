@@ -8,7 +8,7 @@ import ru.otus.spring.homework.serivce.utils.InteractWithUserServiceImpl;
 
 @Configuration
 @ComponentScan("ru.otus.spring.homework")
-public class AppConfig {
+public class InputOutputConfig {
 
     @Bean
     InteractWithUserService interactWithUserService() {

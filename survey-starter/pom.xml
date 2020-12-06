@@ -17,9 +17,17 @@
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
+        <spring-boot-starter.version>2.4.0</spring-boot-starter.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${spring-boot-starter.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>ru.khorunzhev</groupId>
             <artifactId>survey</artifactId>

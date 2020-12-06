@@ -1,0 +1,6 @@
+application:
+  message: "Test Props msg@@@"
+  locale: ru_RU
+
+messager:
+  message: "Hello from Messager test"

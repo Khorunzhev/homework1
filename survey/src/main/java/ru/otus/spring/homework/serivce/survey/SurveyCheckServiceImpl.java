@@ -4,6 +4,7 @@ package ru.otus.spring.homework.serivce.survey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import ru.otus.spring.homework.configuration.SurveyConfig;
 import ru.otus.spring.homework.dao.QuestionDao;
 import ru.otus.spring.homework.model.Question;
 import ru.otus.spring.homework.serivce.answers.AnswerCheckService;
@@ -15,14 +16,14 @@ import java.util.List;
 @Service
 public class SurveyCheckServiceImpl implements SurveyCheckService {
 
-    private final Integer expectedNumberOfRightAnswers;
+    private final SurveyConfig surveyConfig;
     private final AskQuestionService askQuestionService;
     private final AnswerCheckService answerCheckService;
     private final InteractWithUserService interactWithUserService;
     private final QuestionDao questionDao;
 
     @Autowired
-    public SurveyCheckServiceImpl(@Value("${survey.answers.positive}") Integer expectedNumberOfRightAnswers,
+    public SurveyCheckServiceImpl(SurveyConfig surveyConfig,
                                   AskQuestionService askQuestionService,
                                   AnswerCheckService answerCheckService,
                                   QuestionDao questionDao,
@@ -30,7 +31,7 @@ public class SurveyCheckServiceImpl implements SurveyCheckService {
 
         this.answerCheckService = answerCheckService;
         this.askQuestionService = askQuestionService;
-        this.expectedNumberOfRightAnswers = expectedNumberOfRightAnswers;
+        this.surveyConfig = surveyConfig;
         this.questionDao = questionDao;
         this.interactWithUserService = interactWithUserService;
     }
@@ -54,7 +55,7 @@ public class SurveyCheckServiceImpl implements SurveyCheckService {
     }
 
     private boolean getResult(int numberOfRightAnswers) {
-        if (numberOfRightAnswers >= expectedNumberOfRightAnswers) {
+        if (numberOfRightAnswers >= surveyConfig.getNumberOfRightAnswers()) {
             interactWithUserService.writeTo("Тест пройден");
             return true;
         } else {
