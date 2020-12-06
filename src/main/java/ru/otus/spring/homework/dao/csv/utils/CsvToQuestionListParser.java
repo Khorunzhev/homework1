@@ -5,7 +5,7 @@ import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import ru.otus.spring.homework.model.FreeFormQuestion;
 import ru.otus.spring.homework.model.MultipleChoiceQuestion;
 import ru.otus.spring.homework.model.Question;
@@ -18,9 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log
-@Service
+@Component
 @AllArgsConstructor
-public class CsvToQuestionListParserService {
+public class CsvToQuestionListParser {
 
     public static final int ANSWER_COLUMN_BEGIN_FROM_POSITION = 4;
 
