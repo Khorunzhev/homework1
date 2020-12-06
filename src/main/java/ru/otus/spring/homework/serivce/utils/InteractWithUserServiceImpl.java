@@ -1,6 +1,5 @@
 package ru.otus.spring.homework.serivce.utils;
 
-import ru.otus.spring.homework.serivce.utils.exceptions.ReadUserInformationException;
 
 import java.io.*;
 import java.util.Scanner;
