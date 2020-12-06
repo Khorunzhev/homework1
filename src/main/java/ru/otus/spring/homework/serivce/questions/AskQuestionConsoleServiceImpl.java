@@ -18,7 +18,6 @@ public class AskQuestionConsoleServiceImpl implements AskQuestionService {
     private final QuestionFormatterService questionFormatterService;
     private final InteractWithUserService interactWithUserService;
 
-    @SneakyThrows
     @Override
     public void askAllQuestions(List<Question> questionList) {
         for(Question question: questionList) {
@@ -27,7 +26,6 @@ public class AskQuestionConsoleServiceImpl implements AskQuestionService {
         }
     }
 
-    @SneakyThrows
     @Override
     public String askQuestion(Question question) {
         String questionString = questionFormatterService.formatQuestionAnswer(question);

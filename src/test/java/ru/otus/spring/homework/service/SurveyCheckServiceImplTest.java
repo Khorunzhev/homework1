@@ -42,7 +42,6 @@ public class SurveyCheckServiceImplTest {
 
     @BeforeEach
     public void initMocks() {
-        MockitoAnnotations.initMocks(this);
         numberOfRightAnswers = 1;
         surveyCheckServiceImpl = new SurveyCheckServiceImpl(
                 numberOfRightAnswers,

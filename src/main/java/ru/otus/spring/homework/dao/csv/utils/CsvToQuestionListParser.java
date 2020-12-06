@@ -1,17 +1,19 @@
 package ru.otus.spring.homework.dao.csv.utils;
 
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Component;
+import ru.otus.spring.homework.dao.csv.utils.exceptions.CSVParsingException;
 import ru.otus.spring.homework.model.FreeFormQuestion;
 import ru.otus.spring.homework.model.MultipleChoiceQuestion;
 import ru.otus.spring.homework.model.Question;
 import ru.otus.spring.homework.model.enums.QuestionType;
 import ru.otus.spring.homework.model.enums.SurveyCSVHeaders;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -26,18 +28,21 @@ public class CsvToQuestionListParser {
 
     private final FileReader fileReader;
 
-    @SneakyThrows
     public List<Question> parseCsvToQuestionList(String fileName) {
 
         Path csvFile = fileReader.getPathFromResource(fileName);
+        Iterable<CSVRecord> records;
 
-        Iterable<CSVRecord> records = CSVFormat.DEFAULT
-                .withHeader(SurveyCSVHeaders.class)
-                .withFirstRecordAsHeader()
-                .parse(Files.newBufferedReader(csvFile));
-
+        try (BufferedReader bufferedReader = Files.newBufferedReader(csvFile)) {
+            records = CSVFormat.DEFAULT
+                    .withHeader(SurveyCSVHeaders.class)
+                    .withFirstRecordAsHeader()
+                    .parse(bufferedReader)
+                    .getRecords();
+        } catch (IOException e) {
+            throw new CSVParsingException(e);
+        }
         return getQuestionList(records);
-
     }
 
     private List<Question> getQuestionList(Iterable<CSVRecord> records) {
