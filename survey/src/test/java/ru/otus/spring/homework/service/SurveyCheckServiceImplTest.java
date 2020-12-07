@@ -18,6 +18,7 @@ import ru.otus.spring.homework.serivce.questions.AskQuestionService;
 import ru.otus.spring.homework.serivce.survey.SurveyCheckService;
 import ru.otus.spring.homework.serivce.survey.SurveyCheckServiceImpl;
 import ru.otus.spring.homework.serivce.utils.InteractWithUserService;
+import ru.otus.spring.homework.serivce.utils.UserCommuncationService;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -34,7 +35,7 @@ public class SurveyCheckServiceImplTest {
     @Mock
     private AnswerCheckService answerCheckService;
     @Mock
-    private InteractWithUserService interactWithUserService;
+    private UserCommuncationService userCommuncationService;
     @Mock
     private QuestionDao questionDao;
     @Mock
@@ -49,7 +50,7 @@ public class SurveyCheckServiceImplTest {
                 askQuestionService,
                 answerCheckService,
                 questionDao,
-                interactWithUserService);
+                userCommuncationService);
     }
 
 

@@ -2,7 +2,4 @@ survey:
   filename: "questions.csv"
   numberOfQuestions: 4
   numberOfRightAnswers: 1
-
-
-application:
   locale: ru_RU

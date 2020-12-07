@@ -1,4 +1,4 @@
-package ru.otus.spring.homework.configuration;
+package ru.otus.spring.homework;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

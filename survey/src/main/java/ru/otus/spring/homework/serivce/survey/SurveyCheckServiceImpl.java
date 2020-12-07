@@ -35,6 +35,8 @@ public class SurveyCheckServiceImpl implements SurveyCheckService {
         List<Question> questionList = questionDao.findAll();
         int numberOfRightAnswers = 0;
 
+        userCommuncationService.sayHelloToUser();
+
         for (Question question : questionList) {
             String actualAnswer = askQuestionService.askQuestion(question);
             if (answerCheckService.checkAnswer(question.getCorrectAnswer(), actualAnswer))
