@@ -11,6 +11,5 @@ import java.util.Locale;
 public class SurveyConfig {
     int numberOfQuestions;
     int numberOfRightAnswers;
-    String fileName;
     Locale locale;
 }

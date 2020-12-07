@@ -1,0 +1,6 @@
+Question,QuestionType,NumberOfAnswers,Answer1,Answer2,Answer3,Answer4,CorrectAnswer
+Сколько грамм в килограмме ?,FREE_FORM,,"",,,,1000
+Сколько иголок у елки ?,MULTIPLE_CHOICE,4,100,2000,3000,10000,10000
+Кто президент США ?,MULTIPLE_CHOICE,4,Трамп,Обама,Байден,Иван,Трамп
+Назовите столицу России ?,FREE_FORM,,"",,,,Москва
+Сколько килограмм в 1 тонне ?,FREE_FORM,,,,,,1000
