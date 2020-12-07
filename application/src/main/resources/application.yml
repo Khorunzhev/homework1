@@ -1,11 +1,8 @@
-application:
-  message: "Test Props msg@@@"
-  locale: ru_RU
-
-messager:
-  message: "Hello from Messager test"
-
 survey:
-  questions:
-    source:
-      filename: "questions.csv"
+  filename: "questions.csv"
+  numberOfQuestions: 4
+  numberOfRightAnswers: 1
+
+
+application:
+  locale: ru_RU
