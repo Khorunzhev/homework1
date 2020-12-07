@@ -1,4 +1,4 @@
 survey:
   numberOfQuestions: 4
   numberOfRightAnswers: 1
-  locale: ru_RU
+  locale: en

@@ -18,21 +18,14 @@ public class QuestionFormatterService {
     private final MessageSource messageSource;
     private final SurveyConfig surveyConfig;
 
-    private static final String MULTIPLE_ANSWERS_QUESTION_FORMATIVE_STRING =
-            "Question: %s \nType of question: %s \nPossible answers: %s \nYour response: ";
-    private static final String FREE_FORM_QUESTION_FORMATIVE_STRING =
-            "Question: %s \nType of question: %s \nYour response: ";
-
     public String formatQuestionAnswer(Question question) {
         if (question instanceof MultipleChoiceQuestion) {
-            return String.format(MULTIPLE_ANSWERS_QUESTION_FORMATIVE_STRING,
+            return String.format(getMultipleAnswersQuestionFormativeString(),
                     question.getQuestionText(),
-                    question.getQuestionDescription(),
                     formatMultipleAnswers(((MultipleChoiceQuestion) question).getAnswers()));
         } else if (question instanceof FreeFormQuestion) {
-            return String.format(FREE_FORM_QUESTION_FORMATIVE_STRING,
-                    question.getQuestionText(),
-                    question.getQuestionDescription());
+            return String.format(getFreeFormQuestionFormativeString(),
+                    question.getQuestionText());
         } else {
             return "Передан неверный тип вопроса";
         }
@@ -45,15 +38,20 @@ public class QuestionFormatterService {
     }
 
     private String getMultipleAnswersQuestionFormativeString() {
+        return
+                getQuestionString() + ": %s \n" +
+                getPossibleAnswersString() + ": %s \n" +
+                getResponseString() + ": ";
+    }
 
+    private String getFreeFormQuestionFormativeString() {
+        return
+                getQuestionString() + ": %s \n" +
+                getResponseString() + ": ";
     }
 
     private String getQuestionString() {
         return messageSource.getMessage("survey.question", null, surveyConfig.getLocale());
-    }
-
-    private String getTypeOfQuestionString() {
-        return messageSource.getMessage("survey.question.type", null, surveyConfig.getLocale());
     }
 
     private String getPossibleAnswersString() {
