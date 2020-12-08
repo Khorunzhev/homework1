@@ -1,7 +1,7 @@
 survey:
   numberOfQuestions: 4
   numberOfRightAnswers: 1
-  locale: en
+  locale: ru_RU
   filename: questions_${survey.locale}.csv
 spring:
   messages:
