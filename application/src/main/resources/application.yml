@@ -3,3 +3,7 @@ survey:
   numberOfRightAnswers: 1
   locale: en
   filename: questions_${survey.locale}.csv
+spring:
+  messages:
+    basename: i18n.bundle,messages
+    encoding: UTF-8
