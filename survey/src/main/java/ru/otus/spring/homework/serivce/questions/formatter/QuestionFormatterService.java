@@ -1,12 +1,11 @@
 package ru.otus.spring.homework.serivce.questions.formatter;
 
 import lombok.AllArgsConstructor;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
-import ru.otus.spring.homework.configuration.SurveyConfig;
 import ru.otus.spring.homework.model.FreeFormQuestion;
 import ru.otus.spring.homework.model.MultipleChoiceQuestion;
 import ru.otus.spring.homework.model.Question;
+import ru.otus.spring.homework.serivce.utils.localisation.LocalizationService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,8 +14,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class QuestionFormatterService {
 
-    private final MessageSource messageSource;
-    private final SurveyConfig surveyConfig;
+    private final LocalizationService localizationService;
 
     public String formatQuestionAnswer(Question question) {
         if (question instanceof MultipleChoiceQuestion) {
@@ -27,7 +25,7 @@ public class QuestionFormatterService {
             return String.format(getFreeFormQuestionFormativeString(),
                     question.getQuestionText());
         } else {
-            return "Передан неверный тип вопроса";
+            return localizationService.getLocalizationString("survey.file.question.error");
         }
     }
 
@@ -51,14 +49,14 @@ public class QuestionFormatterService {
     }
 
     private String getQuestionString() {
-        return messageSource.getMessage("survey.question", null, surveyConfig.getLocale());
+        return localizationService.getLocalizationString("survey.question");
     }
 
     private String getPossibleAnswersString() {
-        return messageSource.getMessage("survey.question.answers", null, surveyConfig.getLocale());
+        return localizationService.getLocalizationString("survey.question.answers");
     }
 
     private String getResponseString() {
-        return messageSource.getMessage("survey.question.response", null, surveyConfig.getLocale());
+        return localizationService.getLocalizationString("survey.question.response");
     }
 }

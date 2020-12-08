@@ -2,7 +2,8 @@ package ru.otus.spring.homework.serivce.utils;
 
 public interface UserCommuncationService {
 
-    void sayHelloToUser();
+    String askUserName();
+    void sayWelcomeToUser(String userName);
     void sayTestPassed();
     void sayTestFailed();
 

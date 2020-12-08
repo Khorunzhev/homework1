@@ -1,31 +1,35 @@
 package ru.otus.spring.homework.serivce.utils;
 
 import lombok.AllArgsConstructor;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
-import ru.otus.spring.homework.configuration.SurveyConfig;
+import ru.otus.spring.homework.serivce.utils.localisation.LocalizationService;
 
 @Service
 @AllArgsConstructor
 public class UserCommunicationServiceImpl implements UserCommuncationService {
 
-    InteractWithUserService interactWithUserService;
-    MessageSource messageSource;
-    SurveyConfig surveyConfig;
+    private final InteractWithUserService interactWithUserService;
+    private final LocalizationService localizationService;
 
 
     @Override
-    public void sayHelloToUser() {
-        interactWithUserService.writeTo(messageSource.getMessage("user.hello", null, surveyConfig.getLocale()));
+    public String askUserName() {
+        interactWithUserService.writeTo(localizationService.getLocalizationString("user.hello"));
+        return interactWithUserService.readFrom();
+    }
+
+    @Override
+    public void sayWelcomeToUser(String userName) {
+        interactWithUserService.writeTo(localizationService.getLocalizationString("user.greeting", new Object[] {userName}));
     }
 
     @Override
     public void sayTestPassed() {
-        interactWithUserService.writeTo(messageSource.getMessage("user.test.passed",null, surveyConfig.getLocale()));
+        interactWithUserService.writeTo(localizationService.getLocalizationString("user.test.passed"));
     }
 
     @Override
     public void sayTestFailed() {
-        interactWithUserService.writeTo(messageSource.getMessage("user.test.failed", null, surveyConfig.getLocale()));
+        interactWithUserService.writeTo(localizationService.getLocalizationString("user.test.failed"));
     }
 }
