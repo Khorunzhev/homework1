@@ -16,7 +16,6 @@ import java.util.List;
 public class QuestionDaoCSVImpl implements QuestionDao {
 
     private final CsvToQuestionListParser csvToQuestionListParser;
-    private final MessageSource messageSource;
     private final SurveyConfig surveyConfig;
 
     @Override
@@ -25,6 +24,6 @@ public class QuestionDaoCSVImpl implements QuestionDao {
     }
 
     private String getCsvFileName() {
-       return messageSource.getMessage("survey.file", null, surveyConfig.getLocale());
+       return surveyConfig.getFileName();
     }
 }

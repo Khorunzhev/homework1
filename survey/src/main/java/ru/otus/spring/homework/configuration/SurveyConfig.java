@@ -12,4 +12,5 @@ public class SurveyConfig {
     int numberOfQuestions;
     int numberOfRightAnswers;
     Locale locale;
+    String fileName;
 }
