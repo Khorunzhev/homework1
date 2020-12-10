@@ -1,27 +1,23 @@
 package ru.otus.spring.homework.serivce.utils;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import ru.otus.spring.homework.serivce.utils.localisation.LocalizationService;
 
-import java.io.*;
-import java.util.Scanner;
-
+@AllArgsConstructor
+@Service
 public class InteractWithUserServiceImpl implements InteractWithUserService {
 
-    private final PrintStream printStream;
-    private final Scanner scanner;
+    private final InputOutputWrapper inputOutputWrapper;
+    private final LocalizationService localizationService;
 
-    public InteractWithUserServiceImpl(PrintStream printStream, InputStream inputStream) {
-        this.printStream = printStream;
-        this.scanner = new Scanner(inputStream);
-
+    @Override
+    public String askUser() {
+        return inputOutputWrapper.readFrom();
     }
 
     @Override
-    public void writeTo(String info) {
-        printStream.println(info);
-    }
-
-    @Override
-    public String readFrom() {
-        return scanner.nextLine();
+    public void sayToUser(String message, String... values) {
+        inputOutputWrapper.writeTo(localizationService.getLocalizationString(message, values));
     }
 }
