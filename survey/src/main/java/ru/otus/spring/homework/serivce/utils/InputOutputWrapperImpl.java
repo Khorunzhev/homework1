@@ -12,7 +12,6 @@ public class InputOutputWrapperImpl implements InputOutputWrapper {
     public InputOutputWrapperImpl(PrintStream printStream, InputStream inputStream) {
         this.printStream = printStream;
         this.scanner = new Scanner(inputStream);
-
     }
 
     @Override

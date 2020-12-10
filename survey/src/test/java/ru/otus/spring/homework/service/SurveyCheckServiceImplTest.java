@@ -69,7 +69,6 @@ public class SurveyCheckServiceImplTest {
         Mockito.doReturn(true).when(answerCheckService).checkAnswer(question.getCorrectAnswer(), userAnswer);
 
         Assertions.assertTrue(surveyCheckServiceImpl.getSurveyResult());
-
     }
 
     @Test

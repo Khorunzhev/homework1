@@ -5,5 +5,5 @@ survey:
   filename: questions_${survey.locale}.csv
 spring:
   messages:
-    basename: i18n.bundle,messages
+    basename: i18n.bundle
     encoding: UTF-8
