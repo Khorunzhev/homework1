@@ -37,7 +37,7 @@ public class SurveyCheckServiceImplTest {
     @Mock
     private QuestionDao questionDao;
     @Mock
-    private SurveyConfig surveyConfig;
+    private  SurveyConfig surveyConfig;
 
 
 

@@ -2,12 +2,13 @@ package ru.otus.spring.homework;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import ru.otus.spring.homework.configuration.SurveyConfig;
 
 import java.util.Locale;
 
 @ConfigurationProperties(prefix="survey")
 @Data
-public class SurveyProps {
+public class SurveyPropertiesConfig {
 
     private int numberOfQuestions = getDefaultNumberOfQuestions();
     private int numberOfRightAnswers = getDefaultNumberOfRightAnswers();

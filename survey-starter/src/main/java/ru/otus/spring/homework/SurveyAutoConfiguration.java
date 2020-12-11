@@ -11,14 +11,14 @@ import ru.otus.spring.homework.configuration.SurveyConfig;
 
 @Configuration
 @ConditionalOnClass(SurveyConfig.class)
-@EnableConfigurationProperties(SurveyProps.class)
+@EnableConfigurationProperties(SurveyPropertiesConfig.class)
 @Log
 public class SurveyAutoConfiguration {
 
-    private final SurveyProps surveyProps;
+    private final SurveyPropertiesConfig surveyPropertiesConfig;
 
-    public SurveyAutoConfiguration(SurveyProps surveyProps) {
-        this.surveyProps = surveyProps;
+    public SurveyAutoConfiguration(SurveyPropertiesConfig surveyPropertiesConfig) {
+        this.surveyPropertiesConfig = surveyPropertiesConfig;
     }
 
     @Bean
@@ -28,16 +28,16 @@ public class SurveyAutoConfiguration {
         log.info(String.format(
                 "AutoConfig. creating SurveyConfig " +
                 "with numberOfQuestions = %d, numberOfRightAnswers = %d, locale = %s and fileName = %s",
-                surveyProps.getNumberOfQuestions(),
-                surveyProps.getNumberOfRightAnswers(),
-                surveyProps.getLocale(),
-                surveyProps.getFileName()));
+                surveyPropertiesConfig.getNumberOfQuestions(),
+                surveyPropertiesConfig.getNumberOfRightAnswers(),
+                surveyPropertiesConfig.getLocale(),
+                surveyPropertiesConfig.getFileName()));
 
         return new SurveyConfig(
-                surveyProps.getNumberOfQuestions(),
-                surveyProps.getNumberOfRightAnswers(),
-                surveyProps.getLocale(),
-                surveyProps.getFileName());
+                surveyPropertiesConfig.getNumberOfQuestions(),
+                surveyPropertiesConfig.getNumberOfRightAnswers(),
+                surveyPropertiesConfig.getLocale(),
+                surveyPropertiesConfig.getFileName());
     }
 
 }

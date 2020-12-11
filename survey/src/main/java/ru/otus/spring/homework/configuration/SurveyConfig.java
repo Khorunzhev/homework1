@@ -7,10 +7,12 @@ import lombok.Getter;
 import java.util.Locale;
 
 @AllArgsConstructor
-@Getter
+@Data
 public class SurveyConfig {
+
     private int numberOfQuestions;
     private int numberOfRightAnswers;
     private Locale locale;
     private String fileName;
+
 }
