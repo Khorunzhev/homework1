@@ -9,8 +9,8 @@ import java.util.Locale;
 @AllArgsConstructor
 @Getter
 public class SurveyConfig {
-    int numberOfQuestions;
-    int numberOfRightAnswers;
-    Locale locale;
-    String fileName;
+    private int numberOfQuestions;
+    private int numberOfRightAnswers;
+    private Locale locale;
+    private String fileName;
 }

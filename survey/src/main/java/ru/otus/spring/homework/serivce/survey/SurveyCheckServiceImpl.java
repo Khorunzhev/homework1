@@ -2,16 +2,12 @@ package ru.otus.spring.homework.serivce.survey;
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import ru.otus.spring.homework.configuration.SurveyConfig;
 import ru.otus.spring.homework.dao.QuestionDao;
 import ru.otus.spring.homework.model.Question;
 import ru.otus.spring.homework.serivce.answers.AnswerCheckService;
 import ru.otus.spring.homework.serivce.questions.AskQuestionService;
-import ru.otus.spring.homework.serivce.utils.InteractWithUserService;
 import ru.otus.spring.homework.serivce.utils.UserCommuncationService;
 
 import java.util.List;

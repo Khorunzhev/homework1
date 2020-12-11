@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.otus.spring.homework.configuration.SurveyConfig;
 import ru.otus.spring.homework.dao.QuestionDao;
@@ -17,7 +16,6 @@ import ru.otus.spring.homework.serivce.answers.AnswerCheckService;
 import ru.otus.spring.homework.serivce.questions.AskQuestionService;
 import ru.otus.spring.homework.serivce.survey.SurveyCheckService;
 import ru.otus.spring.homework.serivce.survey.SurveyCheckServiceImpl;
-import ru.otus.spring.homework.serivce.utils.InteractWithUserService;
 import ru.otus.spring.homework.serivce.utils.UserCommuncationService;
 
 import java.util.Arrays;
@@ -71,7 +69,6 @@ public class SurveyCheckServiceImplTest {
         Mockito.doReturn(true).when(answerCheckService).checkAnswer(question.getCorrectAnswer(), userAnswer);
 
         Assertions.assertTrue(surveyCheckServiceImpl.getSurveyResult());
-
     }
 
     @Test

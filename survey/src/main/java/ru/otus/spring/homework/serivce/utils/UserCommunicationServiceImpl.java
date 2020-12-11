@@ -9,27 +9,26 @@ import ru.otus.spring.homework.serivce.utils.localisation.LocalizationService;
 public class UserCommunicationServiceImpl implements UserCommuncationService {
 
     private final InteractWithUserService interactWithUserService;
-    private final LocalizationService localizationService;
 
 
     @Override
     public String askUserName() {
-        interactWithUserService.writeTo(localizationService.getLocalizationString("user.hello"));
-        return interactWithUserService.readFrom();
+        interactWithUserService.sayToUser("user.hello");
+        return interactWithUserService.askUser();
     }
 
     @Override
     public void sayWelcomeToUser(String userName) {
-        interactWithUserService.writeTo(localizationService.getLocalizationString("user.greeting", new Object[] {userName}));
+        interactWithUserService.sayToUser("user.greeting", userName);
     }
 
     @Override
     public void sayTestPassed() {
-        interactWithUserService.writeTo(localizationService.getLocalizationString("user.test.passed"));
+        interactWithUserService.sayToUser("user.test.passed");
     }
 
     @Override
     public void sayTestFailed() {
-        interactWithUserService.writeTo(localizationService.getLocalizationString("user.test.failed"));
+        interactWithUserService.sayToUser("user.test.failed");
     }
 }
