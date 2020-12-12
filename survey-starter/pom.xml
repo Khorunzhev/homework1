@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>otus.homework</artifactId>
+        <groupId>ru.khorunzhev</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <artifactId>survey-starter</artifactId>
+    <version>1.0</version>
+
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <properties>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
+        <spring-boot-starter.version>2.4.0</spring-boot-starter.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${spring-boot-starter.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.khorunzhev</groupId>
+            <artifactId>survey</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
+</project>
