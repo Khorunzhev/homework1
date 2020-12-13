@@ -8,6 +8,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.shell.jline.InteractiveShellApplicationRunner;
+import org.springframework.shell.jline.ScriptShellApplicationRunner;
 import ru.otus.spring.homework.configuration.SurveyConfig;
 import ru.otus.spring.homework.dao.QuestionDao;
 import ru.otus.spring.homework.model.MultipleChoiceQuestion;
@@ -22,8 +25,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@DisplayName("SurveyCheckServiceImpl")
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest(properties = {
+        InteractiveShellApplicationRunner.SPRING_SHELL_INTERACTIVE_ENABLED + "=false",
+        ScriptShellApplicationRunner.SPRING_SHELL_SCRIPT_ENABLED + "=false"
+})
 public class SurveyCheckServiceImplTest {
 
     private SurveyCheckService surveyCheckServiceImpl;
