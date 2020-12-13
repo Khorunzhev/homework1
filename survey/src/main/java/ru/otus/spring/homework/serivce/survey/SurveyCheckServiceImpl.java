@@ -2,6 +2,7 @@ package ru.otus.spring.homework.serivce.survey;
 
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.otus.spring.homework.configuration.SurveyConfig;
 import ru.otus.spring.homework.dao.QuestionDao;
@@ -13,7 +14,7 @@ import ru.otus.spring.homework.serivce.utils.UserCommuncationService;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SurveyCheckServiceImpl implements SurveyCheckService {
 
     private final SurveyConfig surveyConfig;
@@ -22,14 +23,22 @@ public class SurveyCheckServiceImpl implements SurveyCheckService {
     private final QuestionDao questionDao;
     private final UserCommuncationService userCommuncationService;
 
-    @Override
-    public boolean getSurveyResult() {
-        return getResult(runSurvey());
+    private int numberOfRightAnswers;
+
+    private boolean isTestPassed() {
+        if (numberOfRightAnswers >= surveyConfig.getNumberOfRightAnswers()) {
+            userCommuncationService.sayTestPassed();
+            return true;
+        } else {
+            userCommuncationService.sayTestFailed();
+            return false;
+        }
     }
 
-    private int runSurvey() {
+    @Override
+    public boolean getSurveyResult() {
         List<Question> questionList = questionDao.findAll();
-        int numberOfRightAnswers = 0;
+        numberOfRightAnswers = 0;
 
         String userName = userCommuncationService.askUserName();
         userCommuncationService.sayWelcomeToUser(userName);
@@ -39,17 +48,11 @@ public class SurveyCheckServiceImpl implements SurveyCheckService {
             if (answerCheckService.checkAnswer(question.getCorrectAnswer(), actualAnswer))
                 numberOfRightAnswers++;
         }
-
-        return numberOfRightAnswers;
+        return isTestPassed();
     }
 
-    private boolean getResult(int numberOfRightAnswers) {
-        if (numberOfRightAnswers >= surveyConfig.getNumberOfRightAnswers()) {
-            userCommuncationService.sayTestPassed();
-            return true;
-        } else {
-            userCommuncationService.sayTestFailed();
-            return false;
-        }
+    @Override
+    public int getNumberOfRightAnswers() {
+        return numberOfRightAnswers;
     }
 }
