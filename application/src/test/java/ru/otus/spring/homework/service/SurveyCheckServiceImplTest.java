@@ -3,9 +3,15 @@ package ru.otus.spring.homework.service;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.shell.jline.InteractiveShellApplicationRunner;
 import org.springframework.shell.jline.ScriptShellApplicationRunner;
 import ru.otus.spring.homework.configuration.SurveyConfig;
@@ -16,11 +22,15 @@ import ru.otus.spring.homework.serivce.answers.AnswerCheckService;
 import ru.otus.spring.homework.serivce.questions.AskQuestionService;
 import ru.otus.spring.homework.serivce.survey.SurveyCheckService;
 import ru.otus.spring.homework.serivce.survey.SurveyCheckServiceImpl;
+import ru.otus.spring.homework.serivce.utils.InputOutputWrapper;
+import ru.otus.spring.homework.serivce.utils.InputOutputWrapperImpl;
 import ru.otus.spring.homework.serivce.utils.UserCommuncationService;
 
+import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 @SpringBootTest(properties = {
         InteractiveShellApplicationRunner.SPRING_SHELL_INTERACTIVE_ENABLED + "=false",
@@ -28,30 +38,21 @@ import java.util.List;
 })
 public class SurveyCheckServiceImplTest {
 
-    private SurveyCheckService surveyCheckServiceImpl;
 
-    @Mock
+    @Autowired
+    private SurveyCheckServiceImpl surveyCheckServiceImpl;
+
+    @MockBean
     private AskQuestionService askQuestionService;
-    @Mock
+    @MockBean
     private AnswerCheckService answerCheckService;
-    @Mock
+    @MockBean
     private UserCommuncationService userCommuncationService;
-    @Mock
+    @MockBean
     private QuestionDao questionDao;
-    @Mock
+    @MockBean
     private  SurveyConfig surveyConfig;
 
-
-
-    @BeforeEach
-    public void initMocks() {
-        surveyCheckServiceImpl = new SurveyCheckServiceImpl(
-                surveyConfig,
-                askQuestionService,
-                answerCheckService,
-                questionDao,
-                userCommuncationService);
-    }
 
 
     @Test
@@ -70,6 +71,8 @@ public class SurveyCheckServiceImplTest {
         Mockito.doReturn(userAnswer).when(askQuestionService).askQuestion(question);
         Mockito.doReturn(true).when(answerCheckService).checkAnswer(question.getCorrectAnswer(), userAnswer);
         Mockito.doReturn(1).when(surveyConfig).getNumberOfRightAnswers();
+        Mockito.doReturn("TestName").when(userCommuncationService).askUserName();
+        Mockito.doNothing().when(userCommuncationService).sayWelcomeToUser(Mockito.anyString());
 
         Assertions.assertTrue(surveyCheckServiceImpl.getSurveyResult());
 
@@ -91,6 +94,8 @@ public class SurveyCheckServiceImplTest {
         Mockito.doReturn(userAnswer).when(askQuestionService).askQuestion(question);
         Mockito.doReturn(false).when(answerCheckService).checkAnswer(question.getCorrectAnswer(), userAnswer);
         Mockito.doReturn(1).when(surveyConfig).getNumberOfRightAnswers();
+        Mockito.doReturn("TestName").when(userCommuncationService).askUserName();
+        Mockito.doNothing().when(userCommuncationService).sayWelcomeToUser(Mockito.anyString());
 
         Assertions.assertFalse(surveyCheckServiceImpl.getSurveyResult());
 
