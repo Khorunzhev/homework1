@@ -69,6 +69,7 @@ public class SurveyCheckServiceImplTest {
         Mockito.doReturn(questionList).when(questionDao).findAll();
         Mockito.doReturn(userAnswer).when(askQuestionService).askQuestion(question);
         Mockito.doReturn(true).when(answerCheckService).checkAnswer(question.getCorrectAnswer(), userAnswer);
+        Mockito.doReturn(1).when(surveyConfig).getNumberOfRightAnswers();
 
         Assertions.assertTrue(surveyCheckServiceImpl.getSurveyResult());
 
@@ -89,6 +90,7 @@ public class SurveyCheckServiceImplTest {
         Mockito.doReturn(questionList).when(questionDao).findAll();
         Mockito.doReturn(userAnswer).when(askQuestionService).askQuestion(question);
         Mockito.doReturn(false).when(answerCheckService).checkAnswer(question.getCorrectAnswer(), userAnswer);
+        Mockito.doReturn(1).when(surveyConfig).getNumberOfRightAnswers();
 
         Assertions.assertFalse(surveyCheckServiceImpl.getSurveyResult());
 
